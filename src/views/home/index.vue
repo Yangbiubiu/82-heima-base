@@ -10,7 +10,7 @@
       <!-- 头部 -->
       <el-header>
         <!-- 头部组件 -->
-        头部
+        <layout-header></layout-header>
       </el-header>
       <!-- 主要区域 -->
       <el-main style='margin:0;padding:0'>
@@ -24,11 +24,13 @@
 
 //1.引入组件
 import layoutAside from '../../components/home/layout-aside.vue'
+import layoutHeader from '../../components/home/layout-header.vue'
 
 export default {
   //2.注册组件
   components:{
-    'layout-aside':layoutAside
+    'layout-aside':layoutAside,
+    'layout-header':layoutHeader
   }
 }
 </script>
