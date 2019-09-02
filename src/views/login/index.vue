@@ -76,37 +76,41 @@ export default {
       // 传入一个回调函数 isOK为true 说明所有的校验规则都成功了
       // 如果为false 说明有错误  有this用箭头函数
      
-     
-      // this.$refs.loginForm.validate((isOk,obj) => {
-      //   if(isOk){// 如果一切校验通过    
-      //     this.$message({ type:'success',message:'成功'})
-      //   } else{// 如果一切校验不通过
-      //     this.$message({ type:'warning',message:'失败'})
-      //   }
-      // })
-
-      // this.$refs.loginForm.validate(isOk => {
-      //   if (isOk) {
-      //     // 请求
-      //     // axios 中 data中放置body参数 params是放置地址参数的
-      //     this.$axios({
-      //       url: '/authorizations',
-      //       method: 'post',
-      //       data: this.loginForm
-      //     }).then(result => {
-      //       // console.log(result.data.data.token)
-      //       // 放到前端的缓存中
-      //       window.localStorage.setItem('user-token', result.data.data.token)
-      //       // 编程式导航
-      //       this.$router.push('/') // 登录成功 跳转到home页
-      //     }).catch(() => {
-      //       this.$message({
-      //         message: '手机号或者验证码错误',
-      //         type: 'warning'
-      //       })
-      //     })
-      //   }
-      // })
+      this.$refs.loginForm.validate(isOk => {
+        if (isOk) {
+          // 请求
+          // axios 中 data中放置body参数 params是放置地址参数的
+          this.$axios({
+            url: '/authorizations',
+            method: 'post',
+            data: this.loginForm
+          }).then(res => {
+         /*  
+             console.log(res)//返回的结果           
+             console.log(res.data) //返回的结果里的数据(data里保存了输进去的手机号验证码是否勾选协议) 
+             打印结果显示：{message: "OK", data: {…}}
+             data: id: 1
+             name: "666"
+             photo: "http://toutiao.meiduo.site/FjplMZrJ4yBNTiFkNLwgw92Wa4jp"
+             refresh_token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njg2MTg4NjIsInVzZXJfaWQiOjEsInJlZnJlc2giOnRydWUsInZlcmlmaWVkIjp0cnVlfQ.cnp7zzNyZSJHNWTKhhl9C6GWp-g80RgDDX7GR9DRSnA"token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTg4NTg4NjIsInVzZXJfaWQiOjEsInJlZnJlc2giOmZhbHNlLCJ2ZXJpZmllZCI6dHJ1ZX0.X8fMfptWHqANOp2w8scV1GBbQGg_Uflow_xZLa9W7qw"
+             __proto__: Objectmessage: "OK"
+             __proto__: Object 
+          */
+           y 
+            console.log(res.data.data.token)//取返回的结果里的数据里的属性data中的token令牌
+            // 放到前端的缓存中 user-token为自定义名 res.data.data.token为token令牌的值
+           window.localStorage.setItem('user-token', res.data.data.token)
+            // // 编程式导航
+            this.$router.push('/') // 登录成功 跳转到home页
+          }).catch(() => {
+            //如果报错的话 提示用户
+            this.$message({
+              message: '手机号或者验证码错误',
+              type: 'warning'//提示类型
+            })
+          })
+        }
+      })
     }
   }
 }
