@@ -96,7 +96,7 @@ export default {
              __proto__: Objectmessage: "OK"
              __proto__: Object 
           */
-           y 
+           
             console.log(res.data.data.token)//取返回的结果里的数据里的属性data中的token令牌
             // 放到前端的缓存中 user-token为自定义名 res.data.data.token为token令牌的值
            window.localStorage.setItem('user-token', res.data.data.token)

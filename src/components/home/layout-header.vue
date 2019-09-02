@@ -7,13 +7,16 @@
       <span>江苏传智播客教育科技股份有限公司</span>
     </el-col>
     <el-col class="right" :span="3">
-      <!-- 属性不给:就相当于字符串 -->
-      <img class="head-img" src="../../assets/img/avatar.jpg" alt />
+  <!-- 属性不给:就相当于字符串  
+      - 正常方式中 引用图片 => 路径
+      - vue=> 引用图片 => 字符串 (文件)
+  -->
+      <img class="head-img" :src="userInfo.photo ? userInfo.photo : '../../assets/img/avatar.jpg'" alt="">
 <!-- trigger elementUI组件自带 -->
       <el-dropdown trigger="click">
         <!-- 匿名插槽 -->
         <span class="el-dropdown-link">
-          下拉菜单
+          82期大神
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
 
@@ -28,7 +31,32 @@
   </el-row>
 </template>
 <script>
-export default {};
+export default {
+  data () { 
+    return {
+      userInfo: {},//定义一个空对象
+
+      // - 正常方式中 引用图片 => 路径
+      // - vue=> 引用图片 => 字符串 (文件)
+      defaultImg: require('../../assets/img/avatar.jpg') // 转成base64字符串
+      }}
+      ,
+  methods: {
+    // 获取用户数据
+    getUserInfo () {
+      let token = window.localStorage.getItem('user-token') // 获取token
+      this.$axios({
+        url: '/user/profile',
+        headers: { 'Authorization': `Bearer ${token}` }
+      }).then(res => {
+        // console.log(res)
+        this.userInfo = res.data.data
+      })
+    }
+  },
+  created () {
+    this.getUserInfo()
+  }}
 </script>
 
 <style  lang='less' scoped>
