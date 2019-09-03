@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
+// import router from './router'
+import router from './permission' // 把./permission（里边有根据导航守卫验证token拦截后的新router）导进来
 import ElementUI from 'element-ui'
 
 // import Component from './components/index'//相当于下边 index可忽略不写
