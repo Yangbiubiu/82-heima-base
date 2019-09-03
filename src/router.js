@@ -24,7 +24,7 @@ export default new Router({
       children: [{
         // 二级路由的地址如果以斜杠‘/’开头,就会从根上计算你的路径 （例如: /a=>路径为 /a）
         // 如果不以斜杠开头就会从你的父路由上进行追加 默认二级路由的简写就是什么也不写
-        path: '', // 默认的二级路由的地址 path为空串 用了嵌套路由
+        path: '', // 默认的二级路由的地址 path为空串 path:''=> path:'/home' (用了嵌套路由)
         component: Main
       }]
     }

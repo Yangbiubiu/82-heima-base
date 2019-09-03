@@ -33,6 +33,9 @@ export default {
   //   'layout-aside':layoutAside,
   //   'layout-header':layoutHeader
   // }
+  created(){
+    window.localStorage.getItem('user-token') // 获取token
+  }
 }
 </script>
 
