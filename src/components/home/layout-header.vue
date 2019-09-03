@@ -67,6 +67,7 @@ export default {
         window.location.href = 'https://github.com/shuiruohanyu/82heimatoutiao' // 跳转到xxx页面 改变当前的地址
       } else {
         // 退出  
+        //  window.localStorage.clear()清空缓存 清除所有的缓存  只能清除自己当前项目的缓存
         window.localStorage.clear() // 点击退出可清除token缓存 退出的标志是清除token
         this.$router.push('/login') // 跳转到登录页
        

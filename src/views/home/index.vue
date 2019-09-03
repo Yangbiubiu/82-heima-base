@@ -14,7 +14,8 @@
       </el-header>
       <!-- 主要区域 -->
       <el-main style='margin:0;padding:0'>
-       主体
+       <router-view></router-view>
+      <!-- 放二级路由的内容的容器 -->
       </el-main>
     </el-container>
   </el-container>

@@ -10,12 +10,13 @@ export default new Router({
       path: '/login',
       component: Login
     },
-    // {
-    //   path: '/',
-    //   redirect: '/home'
-    // },
     {
       path: '/',
+      redirect: '/home'// 一登陆默认进入home页 
+    
+    },
+    {
+      path: '/home', // views里先配置好<router-view> 在这引入保存views路径
       name: 'home',
       component: Home
     }
