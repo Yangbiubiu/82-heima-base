@@ -33,9 +33,10 @@ export default {
   //   'layout-aside':layoutAside,
   //   'layout-header':layoutHeader
   // }
-  created(){
-    window.localStorage.getItem('user-token') // 获取token
-  }
+
+
+//day03 权限思考------:如果在组件的钩子函数(created,mounted)里去拦截 ,就意味着 路由已经进入了(已经晚了)
+// 所以在路由发生变化时 进行拦截是最恰当的 => 导航守卫来守卫我们的导航
 }
 </script>
 
