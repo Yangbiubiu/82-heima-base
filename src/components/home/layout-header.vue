@@ -10,6 +10,7 @@
   <!-- 属性不给:就相当于字符串  
       - 正常方式中 引用图片 => 路径
       - vue=> 引用图片 => 字符串 (文件)
+      三元表达式 =>不确定图片是否一定会使用=> 图片不会自动转成base64
   -->
       <img class="head-img" :src="userInfo.photo ? userInfo.photo : '../../assets/img/avatar.jpg'" alt="">
 <!-- trigger elementUI组件自带 -->
@@ -35,12 +36,12 @@ export default {
   data () { 
     return {
       userInfo: {},//定义一个空对象
-
       // - 正常方式中 引用图片 => 路径
       // - vue=> 引用图片 => 字符串 (文件)
+      // 三元表达式 =>不确定图片是否一定会使用=> 图片不会自动转成base64
       defaultImg: require('../../assets/img/avatar.jpg') // 转成base64字符串
-      }}
-      ,
+      }
+    },
   methods: {
     // 获取用户数据
     getUserInfo () {
@@ -48,15 +49,19 @@ export default {
       this.$axios({
         url: '/user/profile',
         headers: { 'Authorization': `Bearer ${token}` }
-      }).then(res => {
-        // console.log(res)
-        this.userInfo = res.data.data
+      }).then(result => {
+        console.log(result)
+        this.userInfo = result.data.data
       })
     }
   },
   created () {
     this.getUserInfo()
-  }}
+  },
+    // 点击菜单项触发的方法
+  
+
+}
 </script>
 
 <style  lang='less' scoped>

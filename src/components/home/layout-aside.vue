@@ -15,8 +15,8 @@
         <span slot="title">首页</span>
       </el-menu-item>
 
-      <!-- el-submenu是有折叠的菜单 index='/' 为了不一点击两个都出现下拉 -->
-      <el-submenu index='/'>
+      <!-- el-submenu是有折叠的菜单 index='1' 为了不一点击两个都出现下拉 -->
+      <el-submenu index='1'>
       <!-- el-submenu  element UI插件官方定义具名插槽 title -->
         <template slot='title' > 
       <!-- element UI插件官方搜索图标 -->
@@ -39,7 +39,7 @@
        </el-submenu>
 
  <!-- el-submenu是有折叠的菜单 -->
-       <el-submenu>
+       <el-submenu index='2'>
          <!-- el-submenu  element UI插件官方定义具名插槽 title -->
           <template slot='title'>
          <!-- element UI插件官方搜索图标 -->

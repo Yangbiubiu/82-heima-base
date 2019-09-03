@@ -84,10 +84,10 @@ export default {
             url: '/authorizations',
             method: 'post',
             data: this.loginForm
-          }).then(res => {
+          }).then(result => {
          /*  
-             console.log(res)//返回的结果           
-             console.log(res.data) //返回的结果里的数据(data里保存了输进去的手机号验证码是否勾选协议) 
+             console.log(result)//返回的结果           
+             console.log(result.data) //返回的结果里的数据(data里保存了输进去的手机号验证码是否勾选协议) 
              打印结果显示：{message: "OK", data: {…}}
              data: id: 1
              name: "666"
@@ -97,9 +97,9 @@ export default {
              __proto__: Object 
           */
            
-            console.log(res.data.data.token)//取返回的结果里的数据里的属性data中的token令牌
-            // 放到前端的缓存中 user-token为自定义名 res.data.data.token为token令牌的值
-           window.localStorage.setItem('user-token', res.data.data.token)
+            // console.log(result.data.data.token)//取返回的结果里的数据里的属性data中的token令牌
+            // 放到前端的缓存中 user-token为自定义名 result.data.data.token为token令牌的值
+           window.localStorage.setItem('user-token', result.data.data.token)
             // // 编程式导航
             this.$router.push('/') // 登录成功 跳转到home页
           }).catch(() => {
