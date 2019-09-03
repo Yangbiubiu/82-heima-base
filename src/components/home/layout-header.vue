@@ -12,12 +12,12 @@
       - vue=> 引用图片 => 字符串 (文件)
       三元表达式 =>不确定图片是否一定会使用=> 图片不会自动转成base64
   -->
-      <img class="head-img" :src="userInfo.photo ? userInfo.photo : '../../assets/img/avatar.jpg'" alt="">
+      <img class="head-img" :src="userInfo.photo ? userInfo.photo : defaultImg" alt="">
 <!-- trigger elementUI组件自带 -->
       <el-dropdown trigger="click">
         <!-- 匿名插槽 -->
         <span class="el-dropdown-link">
-          82期大神
+          {{userInfo.name}}
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
 
@@ -39,7 +39,7 @@ export default {
       // - 正常方式中 引用图片 => 路径
       // - vue=> 引用图片 => 字符串 (文件)
       // 三元表达式 =>不确定图片是否一定会使用=> 图片不会自动转成base64
-      defaultImg: require('../../assets/img/avatar.jpg') // 转成base64字符串
+      defaultImg: require('../../assets/img/avatar.jpg') // 自定义变量defaultImg 转成base64字符串
       }
     },
   methods: {
@@ -51,7 +51,7 @@ export default {
         headers: { 'Authorization': `Bearer ${token}` }
       }).then(result => {
         console.log(result)
-        this.userInfo = result.data.data
+        this.userInfo = result.data.data//获取用户数据并赋值给空对象
       })
     }
   },
@@ -59,7 +59,9 @@ export default {
     this.getUserInfo()
   },
     // 点击菜单项触发的方法
-  
+    handleMenuItem(){
+
+    }
 
 }
 </script>
