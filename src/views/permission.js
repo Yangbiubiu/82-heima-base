@@ -1,6 +1,6 @@
-// 任何页面 => home以及下面二级路由的时候 => 判断有没有token => 有token =>next()  没有token => next("/login")
+// 主页模块-beforeEach(全局前置守卫)  任何页面 => home以及下面二级路由的时候 => 判断有没有token => 有token =>next()  没有token => next("/login")
 
-import router from './router' // 导航守卫拦截后的新router
+import router from './router' //  router是路由实例  导航守卫拦截后的新router
 router.beforeEach(function (to, from, next) {
   // 如果要去的地址以/home为起始 就说明需要判断当前是不是登录 判断token
   if (to.path.startsWith('/home')) { // to.path要去的地址路径  .startsWith(查询寻内容)查询是否以xx开头
