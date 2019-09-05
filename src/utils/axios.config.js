@@ -14,9 +14,9 @@ axios.interceptors.request.use(function (config) { // interceptors 拦截器  re
   // 控制台显示 headers: {Accept: "application/json, text/plain, */*",  Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleH…J1 (token的值)
   //   debugger// debugger 断点
   return config // 必须将config return（要拿config去加载数据 不return config无法返回数据）
-}, function () { })
+}, function () {})
 
-// 响应拦截器 （）
+// 响应拦截器
 axios.interceptors.response.use(function (response) {
   debugger
   // 对响应数据做处理
@@ -50,7 +50,7 @@ axios.interceptors.response.use(function (response) {
       message = '未知错误'
       break
   }
-  Message({ type: 'warning', message }) // message=>message:message简写 elementUI组件的 Message消息提示 
+  Message({ type: 'warning', message }) // message=>message:message简写 elementUI组件的Message消息提示
   return new Promise(function () {}) // 直接返回一个promise 表示错误已经被处理掉 相当于强行截止错误
 })
 export default axios // 4.导出模板
