@@ -52,8 +52,10 @@ export default {
         url: '/user/profile',
         // headers: { 'Authorization': `Bearer ${token}` }// 2.注入token
       }).then(result => {
-        console.log(result)
-        this.userInfo = result.data.data//获取用户数据并赋值给空对象
+         //debugger  与‘./utils/axios.config’相关链 测试先执行axios.config里断点还是者的断点（为了查看是否拦截成功）
+        // console.log(result)// 打印请求后返回的data数据 // 与‘./utils/axios.config’相关链 响应拦截器中在 .then（.catch promis对象方法）之前拿到了数据 响应拦截器中 return 啥 就返回 啥  (result的值就为啥) 
+        // this.userInfo = result.data.data//获取用户数据并赋值给空对象
+        this.userInfo = result.data//获取用户数据并赋值给空对象 与‘./utils/axios.config’相关链 响应拦截器中 return啥就返回啥(result的值就为啥)
       })
     },  
       // 跳转到登录页=>成功的标志是token=>退出的标志是清除token
@@ -71,8 +73,6 @@ export default {
         //  window.localStorage.clear()清空缓存 清除所有的缓存  只能清除自己当前项目的缓存
         window.localStorage.clear() // 点击退出可清除token缓存 退出的标志是清除token
         this.$router.push('/login') // 跳转到登录页
-       
-
       }
       // console.log(command)
     }
