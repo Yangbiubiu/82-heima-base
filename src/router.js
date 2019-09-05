@@ -26,6 +26,11 @@ export default new Router({
         // 如果不以斜杠开头就会从你的父路由上进行追加 默认二级路由的简写就是什么也不写
         path: '', // 默认的二级路由的地址 path为空串 path:''=> path:'/home' (用了嵌套路由)
         component: Main // 与上边冲突path: '/home' 他即可跟component: Home,匹配 也会跟 component: Main匹配 所以有冲突
+      },
+      {
+        // path: '/home/comment',
+        path: 'comment', // 二级路由的地址
+        component: () => import('./views/comment') // 按需加载
       }]
     }
     // { // 全局守卫导航
