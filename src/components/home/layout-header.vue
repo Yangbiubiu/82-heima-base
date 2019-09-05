@@ -57,7 +57,11 @@ export default {
         // this.userInfo = result.data.data//获取用户数据并赋值给空对象
         this.userInfo = result.data//获取用户数据并赋值给空对象 与‘./utils/axios.config’相关链 响应拦截器中 return啥就返回啥(result的值就为啥)
       })
+      // 可以不用写.catch() 在‘./utils/axios.config’ 的axios中统一处理错误数据 不用每次调接口都处理catca(login页用户输入填写的不正确数据)
     },  
+
+
+    
       // 跳转到登录页=>成功的标志是token=>退出的标志是清除token
       // 监听 el-dropdown中的command事件,还要给el-dropdown-item 一个command属性
   // 点击菜单项触发的方法/事件 用户可以通过相应的菜单项key(自定属性名)进行不同的操作
