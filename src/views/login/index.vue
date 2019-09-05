@@ -5,7 +5,7 @@
         <img src="../../assets/img/logo_index.png" alt="">
       </div>
       <!-- 表单组件  el-form表单容器-->
-      <!--数据校验 首先要给el-form 一个model属性表示数据对象 rules表单验证规则  -->
+      <!--数据校验 (loginForm为自定义名)表示数据对象 首先要给el-form 一个model属性表示数据对象  rules表单验证规则  -->
       <el-form ref='loginForm' :model="loginForm" :rules="loginRules" style='margin-top:20px'>
         <!-- 表单项  prop绑定需要校验的字段名 但是 不写loginForm.mobile 只写mobile-->
         <el-form-item prop="mobile">
@@ -16,6 +16,7 @@
         <el-form-item prop="code">
           <!-- 绑定验证码 -->
            <el-input v-model="loginForm.code" placeHolder='请输入验证码' style='width:280px'></el-input>
+           <!-- style='float:right' 最右靠齐 -->
            <el-button style='float:right'>发送验证码</el-button>
         </el-form-item>
         <el-form-item prop="check">
@@ -41,7 +42,7 @@ export default {
       }
     }
     return {
-      loginForm: {
+      loginForm: {// loginForm为自定义数据对象名
         mobile: '', // 手机号
         code: '', // 验证码
         check: false // 是否勾选协议
@@ -84,7 +85,7 @@ export default {
             url: '/authorizations',
             method: 'post',
             data: this.loginForm
-          }).then(result => {
+          }).then(result => {// 如果一切校验通过    
          /*  
              console.log(result)//返回的结果           
              console.log(result.data) //返回的结果里的数据(data里保存了输进去的手机号验证码是否勾选协议) 
@@ -97,13 +98,12 @@ export default {
              __proto__: Object 
           */
            
-            // console.log(result.data.data.token)//取返回的结果里的数据里的属性data中的token令牌
+            console.log(result.data.data.token)//取返回的结果里的数据里的属性data中的token令牌
             // 放到前端的缓存中 user-token为自定义名 result.data.data.token为token令牌的值
            window.localStorage.setItem('user-token', result.data.data.token)
-            // // 编程式导航
-            this.$router.push('/') // 登录成功 跳转到home页
-          }).catch(() => {
-            //如果报错的话 提示用户
+            
+            this.$router.push('/') // 编程式导航 登录成功=>跳转到home页
+          }).catch(() => { //如果报错的话 提示用户
             this.$message({
               message: '手机号或者验证码错误',
               type: 'warning'//提示类型

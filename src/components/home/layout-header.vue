@@ -46,10 +46,11 @@ export default {
   methods: {
     // 获取用户数据
     getUserInfo () {
-      let token = window.localStorage.getItem('user-token') // 获取token
+      //  axios.config.js中已经引用axios拦截器-统一处理请求token 以下1. 2.代码不用写了
+      // let token = window.localStorage.getItem('user-token') // 1.获取token
       this.$axios({
         url: '/user/profile',
-        headers: { 'Authorization': `Bearer ${token}` }
+        // headers: { 'Authorization': `Bearer ${token}` }// 2.注入token
       }).then(result => {
         console.log(result)
         this.userInfo = result.data.data//获取用户数据并赋值给空对象

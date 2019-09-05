@@ -27,7 +27,7 @@
 // import layoutAside from '../../components/home/layout-aside.vue'
 // import layoutHeader from '../../components/home/layout-header.vue'
 
-export default {
+export default { //暴露输出默认模板c
   //2.注册组件 在main.js中已经引用全局注册了  下边的局部注册不用写
   // components:{
   //   'layout-aside':layoutAside,
