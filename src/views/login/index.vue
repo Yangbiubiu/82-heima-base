@@ -98,17 +98,12 @@ export default {
              __proto__: Object 
           */
            
-            console.log(result.data.data.token)//取返回的结果里的数据里的属性data中的token令牌
+            // console.log(result.data.data.token)//取返回的结果里的数据里的属性data中的token令牌
             // 放到前端的缓存中 user-token为自定义名 result.data.data.token为token令牌的值
-           window.localStorage.setItem('user-token', result.data.data.token)
+           window.localStorage.setItem('user-token', result.data.token)
             
             this.$router.push('/') // 编程式导航 登录成功=>跳转到home页
-          }).catch(() => { //如果报错的话 提示用户
-            this.$message({
-              message: '手机号或者验证码错误',
-              type: 'warning'//提示类型
-            })
-          })
+               })
         }
       })
     }
