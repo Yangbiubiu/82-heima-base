@@ -31,6 +31,10 @@ export default new Router({
         // path: '/home/comment',
         path: 'comment', // 二级路由的地址
         component: () => import('./views/comment') // 按需加载
+      },
+      {
+        path: 'material',
+        component: () => import('./views/material')
       }]
     }
     // { // 全局守卫导航
