@@ -6,11 +6,27 @@
         素材管理
       </template>
     </bread-crumb>
+   <!-- activeName默认选中 跟name后得值相关链 elementUI组件的方法 -->
+    <el-tabs v-model="activeName"  @tab-click="handleClick">
+     <el-tab-pane label="全部素材" name="all">全部
+        <!-- 全部素材的内容 -->
+     </el-tab-pane>
+     <el-tab-pane label="收藏图片" name="collect">收藏
+         <!-- 收藏素材的内容 -->
+     </el-tab-pane>
+ </el-tabs>
   </el-card>
 </template>
 
 <script>
-export default {};
+export default {
+    data(){
+        return{
+            activeName:'all'
+        }
+       
+    }
+};
 </script>
 
 <style>
