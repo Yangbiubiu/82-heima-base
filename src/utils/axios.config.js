@@ -18,7 +18,7 @@ axios.interceptors.request.use(function (config) { // interceptors 拦截器  re
 
 // 响应拦截器
 axios.interceptors.response.use(function (response) {
-  debugger
+  // debugger
   // 对响应数据做处理
   //  return xx就返回值为xx  例return 1 返回1 可以改变axios的返回响应结果
   // 必须将response return（response为原来请求返回的响应结果在 then（catch promis对象方法）之前拿到了）
