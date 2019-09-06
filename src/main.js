@@ -13,7 +13,6 @@ import axios from './utils/axios.config'// 引入axios插件  // 引入专门处
 Vue.prototype.$axios = axios // 给Vue对象的原型属性(Vue中属性都以$开头)赋值axios 那么所有vue实例自动拥有$axios
 
 Vue.config.productionTip = false
-
 Vue.use(ElementUI) // 实例化Vue前引入 全局注册elementUI组件 任意位置都可以使用
 Vue.use(Component) // 实例化Vue前注册引用 自己写的全局注册自定义组件
 // Vue.use(axios) // 用Vue.use的方法去执行  与 ./utils/axios.config相关链
