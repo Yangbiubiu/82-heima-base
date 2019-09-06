@@ -3,8 +3,16 @@
 import axios from 'axios' // 1.引入axios插件
 import router from '../permission' // 引入router或者permission 都行import router from '../router'
 import { Message } from 'element-ui' // 引入 Message消息提示 elementUI组件
+import jsonBigInt from 'json-bigint'// 引入json-bigint  npm的包后端传回的id数字超过了前端的最大安全数字的限制,导致JSON.parse以及其他运算失败.需要第三方的转化包,
+
 // main.js中拿出来的
 axios.defaults.baseURL = 'http://ttapi.research.itcast.cn/mp/v1_0' // 赋值基础地址
+
+// `transformResponse` 在传递给 then/catch 前，允许修改响应数据
+axios.defaults.transformResponse = [function (data) {
+  // data 是响应回来的字符串
+  return jsonBigInt.parse(data)
+}]
 
 // 2.请求拦截器 （在axios请求发出前,对axios的配置项处理注入了token,相当于所有的接口都不需要再填写token headers属性了）
 axios.interceptors.request.use(function (config) { // interceptors 拦截器  request 请求体

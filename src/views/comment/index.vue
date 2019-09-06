@@ -51,7 +51,7 @@ export default {
             method:'put',
             url: '/comments/status',
             // 饿了么组件里的必写参数article_id  allow_comment是否允许评论（boolean）
-             params: { article_id: row.id }, // 传递articleId参数
+             params: { article_id: row.id.toString() }, // 传递articleId参数
           data: { allow_comment: !row.comment_status } // 取反 因为当前如果是true  只能改成false , 如果是false 改成true
           }).then(result => {
           this.getComments() // 成功之后 重新调用 拉取数据的方法 => 前后台同步
