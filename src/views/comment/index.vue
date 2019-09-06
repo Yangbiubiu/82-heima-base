@@ -31,6 +31,10 @@
         </template>
       </el-table-column>
     </el-table>
+     <el-row type="flex" justify="center" style='margin:10px 0'>
+  <!-- 分页组件  current-page当前页码 page-size每页显示多少条  total总数 -->
+      <el-pagination  @current-change="changePage" :current-page='page.page' :page-size='page.pageSize'  :total='page.total' background layout="prev, pager, next"></el-pagination>
+    </el-row>
   </el-card>
 </template>
 
@@ -38,10 +42,21 @@
 export default {
   data() {
     return {
-      list: []
+      list: [],
+       page: { // 这个page为自定义的对象名 里边保存了分页所需的真实参数
+        page: 1, // 当前页码
+        pageSize: 10, // 当前每页条数
+        total: 0 // 总条数
+      }
     }
   },
-  methods: {  
+  methods: {     
+  //点击换页码时候触发的事件 饿了么组件规定的需要传参数作为当前页
+      changePage (newPage) { // newPage最新页码
+      // alert(newPage) // 点换页时弹出最新页码
+      this.page.page = newPage // 给当前页码(this.page.page)更新到最新页码(newPage)
+      this.getComments() // 获取最新页码的数据
+      },
    // 打开或者关闭评论
     openOrClose (row) {
       let mess= row.comment_status ? '关闭' : '打开'
@@ -69,11 +84,14 @@ export default {
       // query参数 就相当于get参数 路径参数 url参数 params
       // body 路径参数  data
       this.$axios({
-        url: "/articles",
-        params: { response_type: "comment" }
+        url: "/articles",    
+        params: { response_type: 'comment', page: this.page.page, per_page: this.page.pageSize }
+       // page(页数): this.page.page, per_page(每页数量): this.page.pageSize }
       }).then(result => {
         // console.log(result); 所有评论的文章们
          this.list = result.data.results
+         this.page.total = result.data.total_count
+         // 把result.data.total_count为返回的所有评论文章数据的总页数 赋值给自定义的对象page.total
       });
     }
   },
