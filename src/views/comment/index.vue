@@ -1,5 +1,5 @@
 <template>
-  <el-card>
+  <el-card v-loading="loading">
     <!-- 插槽内容 => 标题 -->
     <bread-crumb slot="header">
       <!-- 面包屑的具名插槽 -->
@@ -42,6 +42,7 @@
 export default {
   data() {
     return {
+        loading: false, // 控制进度条的状态
       list: [],
        page: { // 这个page为自定义的对象名 里边保存了分页所需的真实参数
         page: 1, // 当前页码
@@ -81,6 +82,7 @@ export default {
         return row.comment_status ? '正常' : '关闭'
     },
     getComments() {
+       this.loading = true // 请求数据之前 把进度条打开
       // query参数 就相当于get参数 路径参数 url参数 params
       // body 路径参数  data
       this.$axios({
@@ -88,6 +90,7 @@ export default {
         params: { response_type: 'comment', page: this.page.page, per_page: this.page.pageSize }
        // page(页数): this.page.page, per_page(每页数量): this.page.pageSize }
       }).then(result => {
+        this.loading = false // 响应数据之后 把进度条关闭
         // console.log(result); 所有评论的文章们
          this.list = result.data.results
          this.page.total = result.data.total_count
